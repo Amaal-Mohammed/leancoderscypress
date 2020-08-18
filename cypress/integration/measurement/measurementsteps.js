@@ -22,8 +22,9 @@ When(/^User insert all fields and save$/, () => {
     cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
  
     cy.xpath("//input[@id='construction-site']").type("25")
-    cy.xpath("//p-inputmask[@id='idExecutionTo']/input").type("23.09.2020")
-    cy.xpath("//p-inputmask[@id='idAccountingMonth']/input").type("09.2020")
+    cy.xpath("//p-inputmask[@id='idExecutionFrom']/input").type("10.01.2020")
+    cy.xpath("//p-inputmask[@id='idExecutionTo']/input").type("10.10.2020")
+    cy.xpath("//p-inputmask[@id='idAccountingMonth']/input").type("10.2020")
 
   cy.xpath("//input[@placeholder='00/000/000']").click({force:true})
   cy.xpath("//input[@placeholder='00/000/000']").type("38140013")

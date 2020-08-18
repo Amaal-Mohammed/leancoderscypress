@@ -1,7 +1,7 @@
 {
   "name": "leancoderscypress",
   "version": "1.0.0",
-  "description": "",
+  "description": "npx Cypress open",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,14 +10,26 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^3.8.3"
+    "cypress": "^3.8.3",
+    "mocha": "^8.1.1",
+    "mocha-teamcity-reporter": "^3.0.0"
   },
   "devDependencies": {
     "cypress-cucumber-preprocessor": "^2.5.4",
     "cypress-xpath": "^1.6.0"
   },
-
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amaal-Mohammed/leancoderscypress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amaal-Mohammed/leancoderscypress/issues"
+  },
+  "homepage": "https://github.com/Amaal-Mohammed/leancoderscypress#readme",
+  "ci:serve": "ng build --prod && http-server dist -p 4200",
+  "cypress:run": "cypress run --reporter mocha-teamcity-reporter",
+  "cypress:ci": "start-server-and-test ci:serve http://localhost:4200 cypress:run"
 }
