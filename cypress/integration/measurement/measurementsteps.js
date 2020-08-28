@@ -68,6 +68,8 @@ cy.xpath("//p-dropdown[@id='measurementEditType']").scrollIntoView()
 Then(/^Measurement is loaded$/, () => {
   let str= 'Measurement '+ "'"+ measurementnum +"'"+ ' was loaded'
   cy.contains(str).should('be.visible')
+
+  cy.get('#m-number').should('have.value', measurementnum.toString())
  
 
   
