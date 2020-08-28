@@ -1,6 +1,8 @@
 {
-    "baseUrl": "http://localhost:4200",
+    
+  "baseUrl": "http://localhost:4200",
   "viewportWidth": 1301,
   "viewportHeight": 800,
-  "testFiles": "**/*.feature"
+  "testFiles": "**/*.feature",
+  "pageLoadTimeout" : 1000000
 }
