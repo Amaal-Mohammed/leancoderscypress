@@ -2,13 +2,13 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 import Helpers from '../../util/helpers'
 let cookiee;
 let measurementnum;
-beforeEach(() => {
 
+
+Given(/^User is logged on$/, () => {
   cy.login("Admin", "admin")
 
-})
-
-
+ 
+});
 
 Given(/^Go to Create measurement page$/, () => {
   cy.get('ul').last().click({ force: true })
@@ -41,8 +41,8 @@ When(/^User insert all fields and save$/, () => {
 
 Then(/^Data is saved and save message is displayed$/, () => {
   cy.xpath("//a[@id='menu-item-save']/span[2]").scrollIntoView().click()
+  cy.xpath("//p-menubarsub[1]/ul[1]/li[6]//span[2]").should('be.visible')
 
-  cy.contains("Measurement created").should('be.visible')
 })
 
 
@@ -61,7 +61,7 @@ When(/^User insert fields then click reload$/, () => {
   cy.wait(2000)
   cy.xpath("//input[@id='m-number']").type(measurementnum)
   cy.xpath("//p-dropdown[@id='measurementEditType']").click()
-  cy.xpath("//app-new-measurement[1]/p-confirmdialog[1]/div[1]/div[3]/button[1]/span[2]").click()
+
 cy.xpath("//p-dropdown[@id='measurementEditType']").scrollIntoView()
 });
 
@@ -70,11 +70,17 @@ Then(/^Measurement is loaded$/, () => {
   cy.contains(str).should('be.visible')
 
   cy.get('#m-number').should('have.value', measurementnum.toString())
- 
 
+ 
   
 })
 
+
+Then(/^Measurement is updated$/, () => {
+  cy.xpath("//a[@id='menu-item-save']/span[2]").scrollIntoView().click()
+  cy.contains("Measurement updated").should('be.visible')
+
+});
 
 
 Given(/^Go to Create measurement page$/, () => {
@@ -99,7 +105,116 @@ Then(/^All Fields are visible$/, () => {
 });
 
 
+Given(/^Go to Create measurement page$/, () => {
+  cy.get('ul').last().click({ force: true })
+
+});
+
+When(/^user updates an existing Measure$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+
+  cy.xpath("//input[@id='construction-site']").type("100")
+  cy.xpath("//p-confirmdialog[1]/div[1]/div[3]/button[2]/span[2]").click()
+
+
+});
+
+Then(/^Measurement is updated$/, () => {
+  cy.xpath("//a[@id='menu-item-save']/span[2]").scrollIntoView().click()
+  cy.contains("Measurement updated").should('be.visible')
+
+});
+
+
+Given(/^user insert Measure Number that already existed in the application$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+ 
+
+
+});
 
 
 
+When(/^User click on History button$/, () => {
+cy.xpath("//p-menubarsub[1]/ul[1]/li[6]//span[2]").click()
+});
+Then(/^History button is displayed$/, () => {
+ cy.xpath("//div[@class='ui-dialog-content ui-widget-content']").should('be.visible')
+
+});
+
+
+When(/^user does not insert Quotation$/, () => {
+ 
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+
+  cy.xpath("//input[@id='m-number']").type( Helpers.generateMeasurementNumber())
+  cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+  cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+
+  cy.xpath("//input[@id='construction-site']").type("25")
+
+  });
+
+  Then(/^Quotation position button is disabled$/, () => {
+    cy.xpath("//span[@xpath=1]").should('not.be.enabled')
+   
+   });
+
+
+   When(/^user insert Quotation$/, () => {
+ 
+    cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  
+    cy.xpath("//input[@id='m-number']").type( Helpers.generateMeasurementNumber())
+    cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+    cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+    cy.xpath("//input[@placeholder='00/000/000']").click({force:true})
+    cy.xpath("//input[@placeholder='00/000/000']").type("38140013")
+    cy.xpath("//p-dropdown[@id='m-type']").click()
+
+    cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+    cy.xpath("//input[@id='construction-site']").type("25")
+
+  
+    });
+  
+    Then(/^Quotation position button is enabled$/, () => {
+      cy.xpath("//span[contains(text(),'Quotation positions')]").scrollIntoView()
+      cy.get('.add-positions > .ui-button-text').should('exist')
+     
+     });
+
+
+     When(/^user insert Quotation and click on Quotation position button$/, () => {
+      cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+   
+      cy.xpath("//input[@placeholder='00/000/000']").click({force:true})
+      cy.xpath("//input[@placeholder='00/000/000']").type("38140013")
+      cy.xpath("//input[@id='construction-site']").type("25")
+      cy.xpath("//span[contains(text(),'Quotation positions')]").scrollIntoView()
+      cy.wait(1000)
+      cy.get('.add-positions > .ui-button-text').type('{enter}')
+      cy.wait(1000)
+      });
+
+      Then(/^Quotation position screen is displayed correctly$/, () => {
+        cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").should('be.visible')
+        cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[2]/span[1]").should('be.visible')
+        cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[3]/span[1]").should('be.visible')
+        cy.xpath("//div[@class='ui-inputswitch ui-widget ui-inputswitch-checked']//span[@class='ui-inputswitch-slider']").should('be.visible')
+
+       
+       });
 
