@@ -54,5 +54,24 @@ Feature: measurement
     Given Go to Create measurement page 
     When user insert Quotation and click on Quotation position button
     Then Quotation position screen is displayed correctly
-
+#
   
+
+##
+Scenario: Verify Measurement Edit Type is Mandatory (telecommunication, underground)
+    Given User is logged on
+    Given Go to Create measurement page 
+    When user does not insert Measurement Edit Type
+    Then Measurement creation is not possible
+
+Scenario: Verify Measurement Type is Mandatory (partial)
+    Given User is logged on
+    Given Go to Create measurement page 
+    When user does not insert Measurement Type
+    Then Measurement creation is not possible
+Scenario: Verify Assigned Employee is Mandatory 
+    Given User is logged on
+    Given Go to Create measurement page 
+    When user does not insert Assigned Employee 
+    Then Measurement creation is not possible
+
