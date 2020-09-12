@@ -261,7 +261,6 @@ When(/^user does not insert Measurement Type$/, () => {
 });
 
 When(/^user does not insert Assigned Employee$/, () => {
-
 cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
   cy.wait(2000)
   measurementnum = Helpers.generateMeasurementNumber()
@@ -281,5 +280,60 @@ cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1
   cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
   cy.wait(1000)
 });
-//span[@class='ui-float-label m-info']//i[@class='pi pi-times']
+
+When(/^user insert Quotation contains Project Execution Period in Future$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+    cy.wait(2000)
+    measurementnum = Helpers.generateMeasurementNumber()
+    cy.writeFile('measurenum.txt', '' + measurementnum)
+    cy.xpath("//input[@id='m-number']").type(measurementnum)
+    cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+    cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+    cy.xpath("//p-dropdown[@id='m-type']").click()
+    cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+    cy.xpath("//input[@id='construction-site']").type("25")
+    cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+    cy.xpath("//input[@placeholder='00/000/000']").type("10100100")
+
+
+    cy.wait(1000)
+  });
+
+  When(/^user insert Quotation contains Commission Number mandatory$/, () => {
+    cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+      cy.wait(2000)
+      measurementnum = Helpers.generateMeasurementNumber()
+      cy.writeFile('measurenum.txt', '' + measurementnum)
+      cy.xpath("//input[@id='m-number']").type(measurementnum)
+      cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+      cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+      cy.xpath("//p-dropdown[@id='m-type']").click()
+      cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+      cy.xpath("//input[@id='construction-site']").type("25")
+      cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+      cy.xpath("//input[@placeholder='00/000/000']").type("40140003")
+ 
+  
+      cy.wait(1000)
+    });
+
+    When(/^user insert Quotation contains Flag Order End$/, () => {
+      cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+        cy.wait(2000)
+        measurementnum = Helpers.generateMeasurementNumber()
+        cy.writeFile('measurenum.txt', '' + measurementnum)
+        cy.xpath("//input[@id='m-number']").type(measurementnum)
+        cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+        cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+        cy.xpath("//p-dropdown[@id='m-type']").click()
+        cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+        cy.xpath("//input[@id='construction-site']").type("25")
+        cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+        cy.xpath("//input[@placeholder='00/000/000']").type("11222333")
+   
+    
+        cy.wait(1000)
+      });
+  //user insert Quotation contains Commission Number mandatory
+  
 

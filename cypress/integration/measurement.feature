@@ -72,6 +72,25 @@ Scenario: Verify Measurement Type is Mandatory (partial)
 Scenario: Verify Assigned Employee is Mandatory 
     Given User is logged on
     Given Go to Create measurement page 
-    When user does not insert Assigned Employee 
+    When user does not insert Assigned Employee
+    Then Measurement creation is not possible
+
+Scenario: Verify Loaded Quotation contains Project Execution Period in Future 
+     Given User is logged on
+    Given Go to Create measurement page 
+    When user insert Quotation contains Project Execution Period in Future
+    Then Measurement creation is not possible
+
+
+ Scenario: Verify Loaded Quotation contains Commission Number mandatory - but no commission
+  Given User is logged on
+    Given Go to Create measurement page 
+    When user insert Quotation contains Commission Number mandatory
+    Then Measurement creation is not possible
+
+ Scenario: Verify Loaded Quotation contains Flag Order End -
+    Given User is logged on
+    Given Go to Create measurement page 
+    When user insert Quotation contains Flag Order End
     Then Measurement creation is not possible
 
