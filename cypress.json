@@ -1,6 +1,6 @@
 {
     
-  "baseUrl": "http://qfm.staging.leancoders.de/",
+  "baseUrl": "http://localhost:4200/",
   "viewportWidth": 1301,
   "viewportHeight": 800,
   "testFiles": "**/*.feature",

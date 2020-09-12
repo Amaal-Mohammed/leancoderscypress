@@ -1,4 +1,5 @@
 Feature: measurement 
+   
     
     Scenario: verify User can create measurement
     Given User is logged on
@@ -94,3 +95,14 @@ Scenario: Verify Loaded Quotation contains Project Execution Period in Future
     When user insert Quotation contains Flag Order End
     Then Measurement creation is not possible
 
+ Scenario: Verify Assigned Employee can be found via Employee Name 
+    Given User is logged on
+    Given Go to Create measurement page 
+    When user insert Employee Name
+    Then Employee is found
+
+Scenario: Verify Assigned Employee can be found via Employee ID
+    Given User is logged on
+    Given Go to Create measurement page 
+    When user insert Employee ID
+    Then Employee is found

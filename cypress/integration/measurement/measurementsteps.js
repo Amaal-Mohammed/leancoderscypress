@@ -285,7 +285,7 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
   cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
     cy.wait(2000)
     measurementnum = Helpers.generateMeasurementNumber()
-    cy.writeFile('measurenum.txt', '' + measurementnum)
+    cy.writeFile('measurenum.txt','' + measurementnum)
     cy.xpath("//input[@id='m-number']").type(measurementnum)
     cy.xpath("//p-dropdown[@id='measurementEditType']").click()
     cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
@@ -294,8 +294,6 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
     cy.xpath("//input[@id='construction-site']").type("25")
     cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
     cy.xpath("//input[@placeholder='00/000/000']").type("10100100")
-
-
     cy.wait(1000)
   });
 
@@ -330,10 +328,44 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
         cy.xpath("//input[@id='construction-site']").type("25")
         cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
         cy.xpath("//input[@placeholder='00/000/000']").type("11222333")
-   
-    
         cy.wait(1000)
       });
-  //user insert Quotation contains Commission Number mandatory
-  
 
+      When(/^user insert Employee Name$/, () => {
+        cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+          cy.wait(2000)
+          measurementnum = Helpers.generateMeasurementNumber()
+          cy.writeFile('measurenum.txt', '' + measurementnum)
+          cy.xpath("//input[@id='m-number']").type(measurementnum)
+        
+          cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
+          cy.get('.ui-autocomplete > .ng-tns-c19-4').type("R")
+          cy.wait(1000)
+        });
+  //user insert Employee ID
+
+  When(/^user insert Employee ID$/, () => {
+    cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+      cy.wait(2000)
+      measurementnum = Helpers.generateMeasurementNumber()
+      cy.writeFile('measurenum.txt', '' + measurementnum)
+      cy.xpath("//input[@id='m-number']").type(measurementnum)
+ 
+      cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
+      cy.get('.ui-autocomplete > .ng-tns-c19-4').type("100")
+      cy.wait(1000)
+    });
+
+    Then(/^Employee is found$/, () => {
+   cy.get('.ui-autocomplete-items').children().contains("Ralf")
+      //  cy.get('ul[class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset"]>li').should('have.text', "Alex. P")
+     // });
+
+      /*
+      Template.getExpandedCategory().invoke('text').then((text1) => {
+        Template.getExpandedCategoryName().should('have.text', text1)
+      })
+      Template.getFirstCategory().should('have.css', 'box-shadow', 'none')
+      <ul class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox" xpath="1"><!----><li role="option" class="ng-tns-c19-11 ng-star-inserted ui-autocomplete-list-item ui-corner-all" id="" style=""><!----><!---->Ralf Heyde [100]</li><!----></ul>
+    */
+    })
