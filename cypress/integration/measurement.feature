@@ -1,6 +1,6 @@
 Feature: measurement 
+
    
-    
     Scenario: verify User can create measurement
     Given User is logged on
     Given Go to Create measurement page 
@@ -106,3 +106,8 @@ Scenario: Verify Assigned Employee can be found via Employee ID
     Given Go to Create measurement page 
     When user insert Employee ID
     Then Employee is found
+
+ Scenario: Verify Execution From/To date formate is DD.MM.YYYY
+    Given User is logged on
+    Given Go to Create measurement page 
+    When Execution From or To date formate is DD.MM.YYYY

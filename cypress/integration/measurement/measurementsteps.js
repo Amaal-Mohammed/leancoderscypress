@@ -358,7 +358,18 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
 
     Then(/^Employee is found$/, () => {
    cy.get('.ui-autocomplete-items').children().contains("Ralf")
-      //  cy.get('ul[class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset"]>li').should('have.text', "Alex. P")
+     
+    })
+
+    When(/^Execution From or To date formate is DD.MM.YYYY$/, () => {
+      cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+      cy.wait(2000)
+      cy.xpath("//p-inputmask[@id='idExecutionFrom']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
+      cy.xpath("//p-inputmask[@id='idExecutionTo']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
+      
+       })
+
+     //  cy.get('ul[class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset"]>li').should('have.text', "Alex. P")
      // });
 
       /*
@@ -368,4 +379,3 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
       Template.getFirstCategory().should('have.css', 'box-shadow', 'none')
       <ul class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox" xpath="1"><!----><li role="option" class="ng-tns-c19-11 ng-star-inserted ui-autocomplete-list-item ui-corner-all" id="" style=""><!----><!---->Ralf Heyde [100]</li><!----></ul>
     */
-    })
