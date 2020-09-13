@@ -111,3 +111,10 @@ Scenario: Verify Assigned Employee can be found via Employee ID
     Given User is logged on
     Given Go to Create measurement page 
     When Execution From or To date formate is DD.MM.YYYY
+
+Scenario: Double Click on Measurement Position duplicates Row and appends it to the End  
+Given User is logged on
+Given Go to Create measurement page 
+When User add a measurement Row
+When  User Double click on Row
+Then row is duplicated

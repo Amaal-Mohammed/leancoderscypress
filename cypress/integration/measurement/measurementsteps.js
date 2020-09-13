@@ -368,6 +368,51 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
       cy.xpath("//p-inputmask[@id='idExecutionTo']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
       
        })
+       When(/^User add a measurement Row$/, () => {
+        cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+        cy.wait(2000)
+        measurementnum = Helpers.generateMeasurementNumber()
+        cy.writeFile('measurenum.txt', '' + measurementnum)
+        cy.xpath("//input[@id='m-number']").type(measurementnum)
+        cy.xpath("//p-dropdown[@id='m-type']").click()
+        cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+        cy.xpath("//input[@id='construction-site']").type("25")
+        cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+        cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
+        cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
+        cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
+        cy.xpath("//div[@row-id='0']/div[2]").click()
+        cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").click()
+         })
+      
+
+
+         When(/^User Double click on Row/, () => {
+       
+          cy.xpath("//div[@row-index='0']/div[2]").dblclick()
+         // cy.xpath("//div[@row-index='0']/div[2]").click()
+          
+           })
+   
+
+           Then(/^row is duplicated/, () => {
+       cy.xpath("//div[@class='ag-center-cols-container']/div[@role='row']").should('have.length',2)
+          //  cy.get('.datatable').find('tr').should('have.length', 4)
+            
+             })
+      
+         
+
+
+
+
+
+
+
+
+
+
+
 
      //  cy.get('ul[class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset"]>li').should('have.text', "Alex. P")
      // });
