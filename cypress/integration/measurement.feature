@@ -118,3 +118,31 @@ Given Go to Create measurement page
 When User add a measurement Row
 When  User Double click on Row
 Then row is duplicated
+
+Scenario: Measurement Positions: TAB sets focus to next editable Cell and value gets selected (blue background)
+Given User is logged on
+Given Go to Create measurement page 
+When User add a measurement Row
+When  User Click TABbecomes blue
+
+
+Scenario: Measurement : Product is calculated correctly
+Given User is logged on
+Given Go to Create measurement page 
+When Insert amount, F1
+Then  Product is calculated correctly
+
+#Scenario: If a Measurement Opens and is in state "invoiced" or "closed", the measurement can not be saved
+#Given User is logged on
+#Given Go to Create measurement page 
+#When Open and is in state "invoiced"
+#Then measurement can not be saved
+
+#570731,TEMPORARY
+#570734,TEMPORARY
+#570735,TEMPORARY
+#570736,TEMPORARY
+#530805,INVOICED
+#530804,INVOICED
+#530811,INVOICED
+#530819,INVOICED

@@ -379,6 +379,7 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
         cy.xpath("//input[@id='construction-site']").type("25")
         cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
         cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
+        cy.wait(1000)
         cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
         cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
         cy.xpath("//div[@row-id='0']/div[2]").click()
@@ -401,10 +402,41 @@ When(/^user insert Quotation contains Project Execution Period in Future$/, () =
             
              })
       
+
+             When(/^User Click TAB/, () => {
+       
+              cy.xpath("//div[@aria-colindex='2']").click()
+            //  cy.get('body').tab().tab()
+              cy.get('.ag-cell-focus').should('have.border','')
+              
+               })
          
 
+             When(/^Insert amount, F1/, () => {
+              cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+              cy.wait(2000)
+              measurementnum = Helpers.generateMeasurementNumber()
+              cy.writeFile('measurenum.txt', '' + measurementnum)
+              cy.xpath("//input[@id='m-number']").type(measurementnum)
+              cy.xpath("//p-dropdown[@id='m-type']").click()
+              cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+              cy.xpath("//input[@id='construction-site']").type("25")
+              cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+              cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
+              cy.wait(1000)
+              cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
+              cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
+              cy.xpath("//div[@row-id='0']/div[2]").click()
+              cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").click()
+              cy.xpath("//div[@aria-colindex='3']").type('1')
+              cy.xpath("//div[@aria-colindex='4']").type('2')
+              
+               })
+        
 
-
+               Then(/^Product is calculated correctly/, () => {
+                cy.xpath("//div[@aria-colindex='7']").type('2') 
+                      })
 
 
 
