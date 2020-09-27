@@ -132,11 +132,38 @@ Given Go to Create measurement page
 When Insert amount, F1
 Then  Product is calculated correctly
 
-#Scenario: If a Measurement Opens and is in state "invoiced" or "closed", the measurement can not be saved
-#Given User is logged on
-#Given Go to Create measurement page 
-#When Open and is in state "invoiced"
-#Then measurement can not be saved
+
+Scenario: If a Measurement Opens and is in state "invoiced" or "closed", the measurement can not be saved
+Given User is logged on
+Given Go to Create measurement page 
+When Open and is in state "invoiced"
+Then measurement can not be saved
+
+Scenario: If a Measurement Opens and is in state Open, the measurement can not be saved
+Given User is logged on
+Given Go to Create measurement page 
+When Open and is in state "Open"
+Then measurement can be saved
+
+
+
+Scenario: CTRL+DEL deletes current Row
+Given User is logged on
+Given Go to Create measurement page 
+When User add a measurement Row
+When CTRLDEL deletes current Row
+Then row is deleted
+
+Scenario: User R click on row a menue will be displayed
+Given User is logged on
+Given Go to Create measurement page 
+When User add a measurement Row
+When User R click on row a menue will be displayed
+Then Menu is displayed
+
+
+
+
 
 #570731,TEMPORARY
 #570734,TEMPORARY

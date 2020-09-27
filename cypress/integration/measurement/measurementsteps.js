@@ -261,7 +261,7 @@ When(/^user does not insert Measurement Type$/, () => {
 });
 
 When(/^user does not insert Assigned Employee$/, () => {
-cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
   cy.wait(2000)
   measurementnum = Helpers.generateMeasurementNumber()
   cy.writeFile('measurenum.txt', '' + measurementnum)
@@ -283,176 +283,217 @@ cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1
 
 When(/^user insert Quotation contains Project Execution Period in Future$/, () => {
   cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-    cy.wait(2000)
-    measurementnum = Helpers.generateMeasurementNumber()
-    cy.writeFile('measurenum.txt','' + measurementnum)
-    cy.xpath("//input[@id='m-number']").type(measurementnum)
-    cy.xpath("//p-dropdown[@id='measurementEditType']").click()
-    cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
-    cy.xpath("//p-dropdown[@id='m-type']").click()
-    cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
-    cy.xpath("//input[@id='construction-site']").type("25")
-    cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
-    cy.xpath("//input[@placeholder='00/000/000']").type("10100100")
-    cy.wait(1000)
-  });
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+  cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+  cy.xpath("//input[@id='construction-site']").type("25")
+  cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+  cy.xpath("//input[@placeholder='00/000/000']").type("10100100")
+  cy.wait(1000)
+});
 
-  When(/^user insert Quotation contains Commission Number mandatory$/, () => {
-    cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-      cy.wait(2000)
-      measurementnum = Helpers.generateMeasurementNumber()
-      cy.writeFile('measurenum.txt', '' + measurementnum)
-      cy.xpath("//input[@id='m-number']").type(measurementnum)
-      cy.xpath("//p-dropdown[@id='measurementEditType']").click()
-      cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
-      cy.xpath("//p-dropdown[@id='m-type']").click()
-      cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
-      cy.xpath("//input[@id='construction-site']").type("25")
-      cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
-      cy.xpath("//input[@placeholder='00/000/000']").type("40140003")
- 
-  
-      cy.wait(1000)
-    });
-
-    When(/^user insert Quotation contains Flag Order End$/, () => {
-      cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-        cy.wait(2000)
-        measurementnum = Helpers.generateMeasurementNumber()
-        cy.writeFile('measurenum.txt', '' + measurementnum)
-        cy.xpath("//input[@id='m-number']").type(measurementnum)
-        cy.xpath("//p-dropdown[@id='measurementEditType']").click()
-        cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
-        cy.xpath("//p-dropdown[@id='m-type']").click()
-        cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
-        cy.xpath("//input[@id='construction-site']").type("25")
-        cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
-        cy.xpath("//input[@placeholder='00/000/000']").type("11222333")
-        cy.wait(1000)
-      });
-
-      When(/^user insert Employee Name$/, () => {
-        cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-          cy.wait(2000)
-          measurementnum = Helpers.generateMeasurementNumber()
-          cy.writeFile('measurenum.txt', '' + measurementnum)
-          cy.xpath("//input[@id='m-number']").type(measurementnum)
-        
-          cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
-          cy.get('.ui-autocomplete > .ng-tns-c19-4').type("R")
-          cy.wait(1000)
-        });
-  //user insert Employee ID
-
-  When(/^user insert Employee ID$/, () => {
-    cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-      cy.wait(2000)
-      measurementnum = Helpers.generateMeasurementNumber()
-      cy.writeFile('measurenum.txt', '' + measurementnum)
-      cy.xpath("//input[@id='m-number']").type(measurementnum)
- 
-      cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
-      cy.get('.ui-autocomplete > .ng-tns-c19-4').type("100")
-      cy.wait(1000)
-    });
-
-    Then(/^Employee is found$/, () => {
-   cy.get('.ui-autocomplete-items').children().contains("Ralf")
-     
-    })
-
-    When(/^Execution From or To date formate is DD.MM.YYYY$/, () => {
-      cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-      cy.wait(2000)
-      cy.xpath("//p-inputmask[@id='idExecutionFrom']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
-      cy.xpath("//p-inputmask[@id='idExecutionTo']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
-      
-       })
-       When(/^User add a measurement Row$/, () => {
-        cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-        cy.wait(2000)
-        measurementnum = Helpers.generateMeasurementNumber()
-        cy.writeFile('measurenum.txt', '' + measurementnum)
-        cy.xpath("//input[@id='m-number']").type(measurementnum)
-        cy.xpath("//p-dropdown[@id='m-type']").click()
-        cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
-        cy.xpath("//input[@id='construction-site']").type("25")
-        cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
-        cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
-        cy.wait(1000)
-        cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
-        cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
-        cy.xpath("//div[@row-id='0']/div[2]").click()
-        cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").click()
-         })
-      
+When(/^user insert Quotation contains Commission Number mandatory$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+  cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+  cy.xpath("//input[@id='construction-site']").type("25")
+  cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+  cy.xpath("//input[@placeholder='00/000/000']").type("40140003")
 
 
-         When(/^User Double click on Row/, () => {
-       
-          cy.xpath("//div[@row-index='0']/div[2]").dblclick()
-         // cy.xpath("//div[@row-index='0']/div[2]").click()
-          
-           })
-   
+  cy.wait(1000)
+});
 
-           Then(/^row is duplicated/, () => {
-       cy.xpath("//div[@class='ag-center-cols-container']/div[@role='row']").should('have.length',2)
-          //  cy.get('.datatable').find('tr').should('have.length', 4)
-            
-             })
-      
+When(/^user insert Quotation contains Flag Order End$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='measurementEditType']").click()
+  cy.xpath("//p-dropdown[@id='measurementEditType']").type('{downarrow}{enter}')
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+  cy.xpath("//input[@id='construction-site']").type("25")
+  cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+  cy.xpath("//input[@placeholder='00/000/000']").type("11222333")
+  cy.wait(1000)
+});
 
-             When(/^User Click TAB/, () => {
-       
-              cy.xpath("//div[@aria-colindex='2']").click()
-            //  cy.get('body').tab().tab()
-              cy.get('.ag-cell-focus').should('have.border','')
-              
-               })
-         
+When(/^user insert Employee Name$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
 
-             When(/^Insert amount, F1/, () => {
-              cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
-              cy.wait(2000)
-              measurementnum = Helpers.generateMeasurementNumber()
-              cy.writeFile('measurenum.txt', '' + measurementnum)
-              cy.xpath("//input[@id='m-number']").type(measurementnum)
-              cy.xpath("//p-dropdown[@id='m-type']").click()
-              cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
-              cy.xpath("//input[@id='construction-site']").type("25")
-              cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
-              cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
-              cy.wait(1000)
-              cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
-              cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
-              cy.xpath("//div[@row-id='0']/div[2]").click()
-              cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").click()
-              cy.xpath("//div[@aria-colindex='3']").type('1')
-              cy.xpath("//div[@aria-colindex='4']").type('2')
-              
-               })
-        
+  cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
+  cy.get('.ui-autocomplete > .ng-tns-c19-4').type("R")
+  cy.wait(1000)
+});
+//user insert Employee ID
 
-               Then(/^Product is calculated correctly/, () => {
-                cy.xpath("//div[@aria-colindex='7']").type('2') 
-                      })
+When(/^user insert Employee ID$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+
+  cy.xpath("//span[@class='ui-float-label m-info']//i[@class='pi pi-times']").click()
+  cy.get('.ui-autocomplete > .ng-tns-c19-4').type("100")
+  cy.wait(1000)
+});
+
+Then(/^Employee is found$/, () => {
+  cy.get('.ui-autocomplete-items').children().contains("Ralf")
+
+})
+
+When(/^Execution From or To date formate is DD.MM.YYYY$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  cy.xpath("//p-inputmask[@id='idExecutionFrom']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
+  cy.xpath("//p-inputmask[@id='idExecutionTo']/input").invoke('attr', 'placeholder').should('contain', 'DD.MM.YYYY')
+
+})
+When(/^User add a measurement Row$/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+  cy.xpath("//input[@id='construction-site']").type("25")
+  cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+  cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
+  cy.wait(1000)
+  cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
+  cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
+  cy.xpath("//div[@row-id='0']/div[2]").click()
+  cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").click()
+})
 
 
 
+When(/^User Double click on Row/, () => {
+
+  cy.xpath("//div[@row-index='0']/div[2]").dblclick()
+  // cy.xpath("//div[@row-index='0']/div[2]").click()
+
+})
+
+
+Then(/^row is duplicated/, () => {
+  cy.xpath("//div[@class='ag-center-cols-container']/div[@role='row']").should('have.length', 2)
+  //  cy.get('.datatable').find('tr').should('have.length', 4)
+
+})
+
+
+When(/^User Click TAB/, () => {
+
+  cy.xpath("//div[@aria-colindex='2']").click()
+  //  cy.get('body').tab().tab()
+  cy.get('.ag-cell-focus').should('have.border', '')
+
+})
+
+
+When(/^Insert amount, F1/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  measurementnum = Helpers.generateMeasurementNumber()
+  cy.writeFile('measurenum.txt', '' + measurementnum)
+  cy.xpath("//input[@id='m-number']").type(measurementnum)
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+  cy.xpath("//input[@id='construction-site']").type("25")
+  cy.xpath("//input[@placeholder='00/000/000']").click({ force: true })
+  cy.xpath("//input[@placeholder='00/000/000']").type("39300001")
+  cy.wait(1000)
+  cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").scrollIntoView()
+  cy.xpath("//div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").type('{enter}')
+  cy.xpath("//div[@row-id='0']/div[2]").click()
+  cy.xpath("//app-quotations-select-dialog[1]/div[1]/div[3]/button[1]/span[1]").click()
+  cy.xpath("//div[@aria-colindex='3']").type('1')
+  cy.xpath("//div[@aria-colindex='4']").type('2')
+
+})
+
+
+Then(/^Product is calculated correctly/, () => {
+  cy.xpath("//div[@aria-colindex='7']").type('2')
+})
+
+
+When(/^Open and is in state "invoiced"/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  cy.xpath("//input[@id='m-number']").type("530805")
+  cy.xpath("//p-dropdown[@id='m-type']").click()
+  cy.xpath("//p-dropdown[@id='m-type']").type('{downarrow}{enter}')
+  cy.xpath("//p-confirmdialog[1]/div[1]/div[3]/button[2]/span[2]").click()
+  cy.xpath("//input[@id='construction-site']").type("25")
+
+  cy.wait(1000)
+
+
+})
+Then(/^measurement can not be saved/, () => {
+  cy.xpath("//a[@id='menu-item-save']/span[2]").scrollIntoView().click()
+  cy.xpath("//p-menubarsub[1]/ul[1]/li[6]//span[2]").should('be.not.visible')
+})
+
+
+When(/^Open and is in state "Open"/, () => {
+  cy.xpath("//app-main-menu[1]//app-main-sub-menu[4]//app-main-sub-menu[2]//span[1]").click({ force: true })
+  cy.wait(2000)
+  cy.xpath("//input[@id='m-number']").type("570735")
+})
+Then(/^measurement can be saved/, () => {
+  cy.xpath("//a[@id='menu-item-save']/span[2]").scrollIntoView().click()
+  cy.xpath("//p-menubarsub[1]/ul[1]/li[6]//span[2]").should('be.visible')
+})
+
+When(/^CTRLDEL deletes current Row/, () => {
+  cy.xpath("//div[@row-index='0']/div[2]").type('{ctrl}{del}')
+})
+
+Then(/^row is deleted/, () => {
+  cy.xpath("//div[@class='ag-center-cols-container']/div[@role='row']").should('have.length', 0)
+})
 
 
 
+When(/^User R click on row a menue will be displayed/, () => {
+  cy.xpath("//div[@row-index='0']/div[2]").rightclick()
+})
 
+Then(/^Menu is displayed/, () => {
+  cy.xpath("//div[@class='ag-menu-list-body']").should('exist')
+})
 
 
      //  cy.get('ul[class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset"]>li').should('have.text', "Alex. P")
      // });
 
-      /*
-      Template.getExpandedCategory().invoke('text').then((text1) => {
-        Template.getExpandedCategoryName().should('have.text', text1)
-      })
-      Template.getFirstCategory().should('have.css', 'box-shadow', 'none')
-      <ul class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox" xpath="1"><!----><li role="option" class="ng-tns-c19-11 ng-star-inserted ui-autocomplete-list-item ui-corner-all" id="" style=""><!----><!---->Ralf Heyde [100]</li><!----></ul>
-    */
+/*
+Template.getExpandedCategory().invoke('text').then((text1) => {
+  Template.getExpandedCategoryName().should('have.text', text1)
+})
+Template.getFirstCategory().should('have.css', 'box-shadow', 'none')
+<ul class="ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox" xpath="1"><!----><li role="option" class="ng-tns-c19-11 ng-star-inserted ui-autocomplete-list-item ui-corner-all" id="" style=""><!----><!---->Ralf Heyde [100]</li><!----></ul>
+*/
